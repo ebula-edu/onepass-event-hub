@@ -421,12 +421,48 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_event_by_slug: {
+        Args: { _slug: string }
+        Returns: {
+          capacity: number
+          category: string
+          description: string
+          ends_at: string
+          event_type: string
+          id: string
+          location: string
+          paid_count: number
+          reserved_count: number
+          slug: string
+          starts_at: string
+          tickets_left: number
+          title: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      list_published_events: {
+        Args: never
+        Returns: {
+          capacity: number
+          category: string
+          description: string
+          ends_at: string
+          event_type: string
+          id: string
+          location: string
+          paid_count: number
+          reserved_count: number
+          slug: string
+          starts_at: string
+          tickets_left: number
+          title: string
+        }[]
       }
       verify_receipt: {
         Args: { _receipt_number: string }

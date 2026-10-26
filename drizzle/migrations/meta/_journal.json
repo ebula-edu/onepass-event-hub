@@ -8,6 +8,13 @@
       "when": 1792935303507,
       "tag": "0000_ics_events_core",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792992287031,
+      "tag": "0001_ics_public_event_reads",
+      "breakpoints": true
     }
   ]
 }
