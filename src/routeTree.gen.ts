@@ -10,33 +10,148 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedMyTicketsRouteImport } from './routes/_authenticated/my-tickets'
+import { Route as EventSlugRouteImport } from './routes/event.$slug'
+import { Route as VerifyReceiptNumberRouteImport } from './routes/verify.$receiptNumber'
+import { Route as AuthenticatedOrganizerIndexRouteImport } from './routes/_authenticated/organizer.index'
+import { Route as AuthenticatedOrganizerEventIdRouteImport } from './routes/_authenticated/organizer.$eventId'
+import { Route as AuthenticatedOrganizerNewRouteImport } from './routes/_authenticated/organizer.new'
+import { Route as AuthenticatedReceiptsReceiptNumberRouteImport } from './routes/_authenticated/receipts.$receiptNumber'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedMyTicketsRoute = AuthenticatedMyTicketsRouteImport.update({
+  id: '/my-tickets',
+  path: '/my-tickets',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const EventSlugRoute = EventSlugRouteImport.update({
+  id: '/event/$slug',
+  path: '/event/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyReceiptNumberRoute = VerifyReceiptNumberRouteImport.update({
+  id: '/verify/$receiptNumber',
+  path: '/verify/$receiptNumber',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedOrganizerIndexRoute =
+  AuthenticatedOrganizerIndexRouteImport.update({
+    id: '/organizer/',
+    path: '/organizer/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOrganizerEventIdRoute =
+  AuthenticatedOrganizerEventIdRouteImport.update({
+    id: '/organizer/$eventId',
+    path: '/organizer/$eventId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOrganizerNewRoute =
+  AuthenticatedOrganizerNewRouteImport.update({
+    id: '/organizer/new',
+    path: '/organizer/new',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedReceiptsReceiptNumberRoute =
+  AuthenticatedReceiptsReceiptNumberRouteImport.update({
+    id: '/receipts/$receiptNumber',
+    path: '/receipts/$receiptNumber',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/my-tickets': typeof AuthenticatedMyTicketsRoute
+  '/event/$slug': typeof EventSlugRoute
+  '/verify/$receiptNumber': typeof VerifyReceiptNumberRoute
+  '/organizer/$eventId': typeof AuthenticatedOrganizerEventIdRoute
+  '/organizer/new': typeof AuthenticatedOrganizerNewRoute
+  '/receipts/$receiptNumber': typeof AuthenticatedReceiptsReceiptNumberRoute
+  '/organizer/': typeof AuthenticatedOrganizerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/my-tickets': typeof AuthenticatedMyTicketsRoute
+  '/event/$slug': typeof EventSlugRoute
+  '/verify/$receiptNumber': typeof VerifyReceiptNumberRoute
+  '/organizer/$eventId': typeof AuthenticatedOrganizerEventIdRoute
+  '/organizer/new': typeof AuthenticatedOrganizerNewRoute
+  '/receipts/$receiptNumber': typeof AuthenticatedReceiptsReceiptNumberRoute
+  '/organizer': typeof AuthenticatedOrganizerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/my-tickets': typeof AuthenticatedMyTicketsRoute
+  '/event/$slug': typeof EventSlugRoute
+  '/verify/$receiptNumber': typeof VerifyReceiptNumberRoute
+  '/_authenticated/organizer/$eventId': typeof AuthenticatedOrganizerEventIdRoute
+  '/_authenticated/organizer/new': typeof AuthenticatedOrganizerNewRoute
+  '/_authenticated/receipts/$receiptNumber': typeof AuthenticatedReceiptsReceiptNumberRoute
+  '/_authenticated/organizer/': typeof AuthenticatedOrganizerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/my-tickets'
+    | '/event/$slug'
+    | '/verify/$receiptNumber'
+    | '/organizer/$eventId'
+    | '/organizer/new'
+    | '/receipts/$receiptNumber'
+    | '/organizer/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/my-tickets'
+    | '/event/$slug'
+    | '/verify/$receiptNumber'
+    | '/organizer/$eventId'
+    | '/organizer/new'
+    | '/receipts/$receiptNumber'
+    | '/organizer'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/my-tickets'
+    | '/event/$slug'
+    | '/verify/$receiptNumber'
+    | '/_authenticated/organizer/$eventId'
+    | '/_authenticated/organizer/new'
+    | '/_authenticated/receipts/$receiptNumber'
+    | '/_authenticated/organizer/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  EventSlugRoute: typeof EventSlugRoute
+  VerifyReceiptNumberRoute: typeof VerifyReceiptNumberRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +163,98 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/my-tickets': {
+      id: '/_authenticated/my-tickets'
+      path: '/my-tickets'
+      fullPath: '/my-tickets'
+      preLoaderRoute: typeof AuthenticatedMyTicketsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/event/$slug': {
+      id: '/event/$slug'
+      path: '/event/$slug'
+      fullPath: '/event/$slug'
+      preLoaderRoute: typeof EventSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify/$receiptNumber': {
+      id: '/verify/$receiptNumber'
+      path: '/verify/$receiptNumber'
+      fullPath: '/verify/$receiptNumber'
+      preLoaderRoute: typeof VerifyReceiptNumberRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/organizer/': {
+      id: '/_authenticated/organizer/'
+      path: '/organizer'
+      fullPath: '/organizer/'
+      preLoaderRoute: typeof AuthenticatedOrganizerIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/organizer/$eventId': {
+      id: '/_authenticated/organizer/$eventId'
+      path: '/organizer/$eventId'
+      fullPath: '/organizer/$eventId'
+      preLoaderRoute: typeof AuthenticatedOrganizerEventIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/organizer/new': {
+      id: '/_authenticated/organizer/new'
+      path: '/organizer/new'
+      fullPath: '/organizer/new'
+      preLoaderRoute: typeof AuthenticatedOrganizerNewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/receipts/$receiptNumber': {
+      id: '/_authenticated/receipts/$receiptNumber'
+      path: '/receipts/$receiptNumber'
+      fullPath: '/receipts/$receiptNumber'
+      preLoaderRoute: typeof AuthenticatedReceiptsReceiptNumberRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedMyTicketsRoute: typeof AuthenticatedMyTicketsRoute
+  AuthenticatedOrganizerEventIdRoute: typeof AuthenticatedOrganizerEventIdRoute
+  AuthenticatedOrganizerNewRoute: typeof AuthenticatedOrganizerNewRoute
+  AuthenticatedReceiptsReceiptNumberRoute: typeof AuthenticatedReceiptsReceiptNumberRoute
+  AuthenticatedOrganizerIndexRoute: typeof AuthenticatedOrganizerIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedMyTicketsRoute: AuthenticatedMyTicketsRoute,
+  AuthenticatedOrganizerEventIdRoute: AuthenticatedOrganizerEventIdRoute,
+  AuthenticatedOrganizerNewRoute: AuthenticatedOrganizerNewRoute,
+  AuthenticatedReceiptsReceiptNumberRoute:
+    AuthenticatedReceiptsReceiptNumberRoute,
+  AuthenticatedOrganizerIndexRoute: AuthenticatedOrganizerIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  EventSlugRoute: EventSlugRoute,
+  VerifyReceiptNumberRoute: VerifyReceiptNumberRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
