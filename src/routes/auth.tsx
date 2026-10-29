@@ -5,11 +5,11 @@ import { Fingerprint, GraduationCap, ShieldCheck, UserRound } from "lucide-react
 import { supabase } from "@/integrations/supabase/client";
 import { Button, Input, Label } from "@/components/ui";
 
-type Search = { next?: string };
+type Search = { next?: string | undefined };
 
 export const Route = createFileRoute("/auth")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    next: typeof search.next === "string" ? search.next : undefined,
+    next: typeof search["next"] === "string" ? search["next"] : undefined,
   }),
   head: () => ({
     meta: [

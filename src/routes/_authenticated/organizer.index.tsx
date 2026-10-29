@@ -6,7 +6,7 @@ import {
   getOrganizerDashboard,
   reviewEvent,
   type OrganizerEventRow,
-} from "@/lib/server/ics.functions";
+} from "@/lib/ics.functions";
 import { Badge, Button, Card } from "@/components/ui";
 import { eventDayLabel, peso } from "@/lib/format";
 

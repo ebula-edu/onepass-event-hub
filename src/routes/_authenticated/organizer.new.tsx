@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Plus, Trash2 } from "lucide-react";
-import { createEvent } from "@/lib/server/ics.functions";
+import { createEvent } from "@/lib/ics.functions";
 import { Button, Card, Input, Label, Select, Textarea } from "@/components/ui";
 import { peso } from "@/lib/format";
 

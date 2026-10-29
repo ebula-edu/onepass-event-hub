@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Sparkles, ShieldCheck, ReceiptText } from "lucide-react";
-import { getPublishedEvents } from "@/lib/server/ics.functions";
+import { getPublishedEvents } from "@/lib/ics.functions";
 import { EventCard } from "@/components/event-card";
 import { Badge } from "@/components/ui";
 

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CalendarPlus, ReceiptText } from "lucide-react";
-import { getMyTickets, type MyTicketRow } from "@/lib/server/ics.functions";
+import { getMyTickets, type MyTicketRow } from "@/lib/ics.functions";
 import { Ticket3D } from "@/components/ticket-3d";
 import { ReservationCard } from "@/components/reservation-card";
 import { Badge, Card } from "@/components/ui";
@@ -123,7 +123,7 @@ function MyTickets() {
                   startsAt={t.event?.starts_at ?? t.created_at}
                   holderName=""
                   seat={t.seat}
-                  typeName={t.ticket_type?.name}
+                  typeName={t.ticket_type?.name ?? null}
                   paymentStatus={t.payment_status}
                 />
                 <TicketActions t={t} />
@@ -148,7 +148,7 @@ function MyTickets() {
                   startsAt={t.event?.starts_at ?? t.created_at}
                   holderName=""
                   seat={t.seat}
-                  typeName={t.ticket_type?.name}
+                  typeName={t.ticket_type?.name ?? null}
                   paymentStatus={t.payment_status}
                 />
                 <Badge variant="outline" className="mt-2">

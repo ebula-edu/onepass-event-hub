@@ -22,7 +22,7 @@ import {
   refundTicket,
   type CheckInResult,
   type EventManageData,
-} from "@/lib/server/ics.functions";
+} from "@/lib/ics.functions";
 import { CHECK_IN_REASONS } from "@/lib/rules";
 import { eventDayLabel, eventTimeLabel, peso } from "@/lib/format";
 import { Badge, Button, Card, Input, Label, Modal, Textarea } from "@/components/ui";
@@ -116,7 +116,7 @@ function ManageEventPage() {
           ...l,
         ]);
       } else {
-        const reason = CHECK_IN_REASONS[res.reason] ?? res.reason;
+        const reason = res.reason === "ok" ? "Checked in" : CHECK_IN_REASONS[res.reason];
         toast.error(reason);
         setScanLog((l) => [
           { ok: false, text: `✗ ${res.code ?? "unknown code"} — ${reason}` },
