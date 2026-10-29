@@ -3,7 +3,7 @@ import { Link, useRouter, useNavigate } from "@tanstack/react-router";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { LogOut, ShieldCheck, Ticket } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { getMySession } from "@/lib/server/ics.functions";
+import { getMySession } from "@/lib/ics.functions";
 import { Button } from "@/components/ui";
 
 export function SiteHeader() {

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BadgeCheck, ShieldX } from "lucide-react";
-import { verifyReceiptPublic } from "@/lib/server/ics.functions";
+import { verifyReceiptPublic } from "@/lib/ics.functions";
 import { eventDayLabel, peso } from "@/lib/format";
 import { Badge, Card } from "@/components/ui";
 

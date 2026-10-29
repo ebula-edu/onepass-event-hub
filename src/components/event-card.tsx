@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Users } from "lucide-react";
-import type { PublicEventSummary } from "@/lib/server/ics.functions";
+import type { PublicEventSummary } from "@/lib/ics.functions";
 import { eventDayLabel, eventTimeLabel, pesoShort } from "@/lib/format";
 import { Badge, Button } from "@/components/ui";
 

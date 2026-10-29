@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BadgeCheck, ShieldCheck } from "lucide-react";
-import { getReceiptForOwner, type OwnerReceipt } from "@/lib/server/ics.functions";
+import { getReceiptForOwner, type OwnerReceipt } from "@/lib/ics.functions";
 import { ReceiptOvi } from "@/components/receipt-ovi";
 import { Button } from "@/components/ui";
 

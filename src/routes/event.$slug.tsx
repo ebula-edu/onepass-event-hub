@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 import { CalendarDays, CheckCircle2, MapPin, Users } from "lucide-react";
-import { getEventBySlug, getMySession, reserveTicket, type PublicTicketType } from "@/lib/server/ics.functions";
+import { getEventBySlug, getMySession, reserveTicket, type PublicTicketType } from "@/lib/ics.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { eventDayLabel, eventTimeLabel, peso } from "@/lib/format";
 import { Badge, Button, Card } from "@/components/ui";
