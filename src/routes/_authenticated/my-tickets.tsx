@@ -123,7 +123,7 @@ function MyTickets() {
                   startsAt={t.event?.starts_at ?? t.created_at}
                   holderName=""
                   seat={t.seat}
-                  typeName={t.ticket_type?.name}
+                  typeName={t.ticket_type?.name ?? null}
                   paymentStatus={t.payment_status}
                 />
                 <TicketActions t={t} />
@@ -148,7 +148,7 @@ function MyTickets() {
                   startsAt={t.event?.starts_at ?? t.created_at}
                   holderName=""
                   seat={t.seat}
-                  typeName={t.ticket_type?.name}
+                  typeName={t.ticket_type?.name ?? null}
                   paymentStatus={t.payment_status}
                 />
                 <Badge variant="outline" className="mt-2">

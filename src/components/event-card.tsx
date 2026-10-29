@@ -67,7 +67,7 @@ export function EventCard({ ev }: { ev: PublicEventSummary }) {
             {isFree ? "FREE" : isMember ? "Member pricing" : `from ₱${ev.paid_count > 0 ? "" : ""}`}
           </span>
         </div>
-        {ev.capacity > 0 && (
+        {(ev.capacity ?? 0) > 0 && (
           <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-muted">
             <div className="h-full rounded-full bg-gold transition-all" style={{ width: `${pct}%` }} />
           </div>

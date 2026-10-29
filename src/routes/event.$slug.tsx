@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "sonner";
 import { CalendarDays, CheckCircle2, MapPin, Users } from "lucide-react";
-import { getEventBySlug, reserveTicket, type PublicTicketType } from "@/lib/server/ics.functions";
+import { getEventBySlug, getMySession, reserveTicket, type PublicTicketType } from "@/lib/server/ics.functions";
 import { supabase } from "@/integrations/supabase/client";
 import { eventDayLabel, eventTimeLabel, peso } from "@/lib/format";
 import { Badge, Button, Card } from "@/components/ui";
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/event/$slug")({
 
 import { queryOptions } from "@tanstack/react-query";
 function queryOptionsFor(slug: string) {
-  return queryOptions({ queryKey: ["event", slug], queryFn: () => getEventBySlug(slug) });
+  return queryOptions({ queryKey: ["event", slug], queryFn: () => getEventBySlug({ data: slug }) });
 }
 
 function EventPage() {

@@ -311,7 +311,7 @@ export const getReceiptForOwner = createServerFn({ method: "POST" })
     const { data: row } = await supabase
       .from("receipts")
       .select(
-        `id, receipt_number, total_amount, currency, line_items, created_at,
+        `id, receipt_number, total_amount, currency, line_items, created_at, user_id, payment_id,
          event:events(id, title, location, starts_at),
          tickets(id, ticket_code, seat, payment_status, ticket_type:ticket_types(name), holder_name, holder_student_id)`,
       )
@@ -482,7 +482,7 @@ export const checkIn = createServerFn({ method: "POST" })
     let sig: string | undefined;
     if (code.includes("|")) {
       const parts = code.split("|");
-      code = (parts[1] ?? parts[0]).trim();
+      code = (parts[1] ?? parts[0] ?? "").trim();
       sig = parts[2]?.trim() || undefined;
     }
 

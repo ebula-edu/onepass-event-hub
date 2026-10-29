@@ -116,7 +116,7 @@ function ManageEventPage() {
           ...l,
         ]);
       } else {
-        const reason = CHECK_IN_REASONS[res.reason] ?? res.reason;
+        const reason = res.reason === "ok" ? "Checked in" : CHECK_IN_REASONS[res.reason];
         toast.error(reason);
         setScanLog((l) => [
           { ok: false, text: `✗ ${res.code ?? "unknown code"} — ${reason}` },
